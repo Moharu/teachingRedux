@@ -18,11 +18,9 @@ import { createStore } from 'redux'
     a única ação será: SET_VISIBILITY_FILTER, que terá como parametro o novo filtro
 */
 
-let defaultState = {
-    visibilityFilter: 'SHOW_ALL'
-}
+let defaultState = 'SHOW_ALL'
 
-let visibilityReducer = (state = defaultState, action) => {
+let visibilityFilter = (state = defaultState, action) => {
     switch(action.type){
         default:
             return state
