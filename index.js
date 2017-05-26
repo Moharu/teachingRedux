@@ -1,5 +1,4 @@
 import todos, { addTodo, toggleTodo } from './todoApp'
-import { createStore } from 'redux'
 
 let setVisibilityFilter = (filter) => ({
     type: 'SET_VISIBILITY_FILTER',
@@ -17,17 +16,36 @@ let visibilityFilter = (state = defaultState, action) => {
     }
 }
 
-/*
-    Agora temos dois redutores, o 'todos' (antigo 'todoApp'), e o 'visibilityReducer',
-    qual será a cara do estado (UNICO) da nossa aplicação?
-*/
-
 const defaultAppState = {
     todos: [],
     visibilityFilter: 'SHOW_ALL'
 }
 
 /*
-    Como podemos projetar um redutor, que receba as ações JÁ DEFINIDAS e
-    atue corretamente ?
+    Simples:
+    Cada chave do estado tem seu próprio redutor, e como as ações são distintas,
+    cada redutor sabe como vai agir e se aquela ação é destinada a ele
 */
+
+const todoApp = (state = defaultAppState, action) => {
+    return {
+        todos: todos(state.todos, action),
+        visibilityFilter: visibilityFilter(state.visibilityFilter, action)
+    }
+}
+
+/*
+    O REDUX tem uma função que automatiza esse processo para nós: combineReducers,
+    para criar nossa store, fazemos o seguinte:
+*/
+
+import { createStore, combineReducers } from 'redux'
+
+const combinedReducers = combineReducers({
+    todos,
+    visibilityFilter
+})
+
+// Nesse ponto, 'combinedReducers' tem EXATAMENTE a mesma função do nosso 'todoApp'
+
+let store = createStore(combinedReducers)
