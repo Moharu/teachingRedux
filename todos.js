@@ -10,7 +10,7 @@ export const toggleTodo = (index) => ({
 
 const initialState = []
 
-const todoApp = (state = initialState, action = {}) => {
+const todos = (state = initialState, action = {}) => {
     switch(action.type){
         case 'ADD_TODO':
             return [...state, { text: action.text, completed: false}]
@@ -21,4 +21,4 @@ const todoApp = (state = initialState, action = {}) => {
     }
 }
 
-export default todoApp
+export default todos
