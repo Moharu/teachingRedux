@@ -1,30 +1,33 @@
-/*
-    Primeiramente, movemos o código relacionado ao todoApp para um arquivo diferente
-*/
-
-import todoApp, { addTodo, toggleTodo } from './todoApp'
+import todos, { addTodo, toggleTodo } from './todoApp'
 import { createStore } from 'redux'
 
-/*
-    Agora, vamos falar sobre composição de redutores.
-    Conforme a aplicação vai ficando mais complexa, o redutor
-    da aplicação vai crescendo cada vez mais, mas é possível
-    separar ele em diversos redutores menores, com funçoes específicas.
+let setVisibilityFilter = (filter) => ({
+    type: 'SET_VISIBILITY_FILTER',
+    filter
+})
 
-    Digamos que agora queremos um filtro de visibilidade para nossa lista
-    de TODOS
+let defaultState = 'SHOW_ALL'
 
-    ele vai ter as opcoes: SHOW_ALL, SHOW_COMPLETED, HIDE_COMPLETED
-    a única ação será: SET_VISIBILITY_FILTER, que terá como parametro o novo filtro
-*/
-
-let defaultState = {
-    visibilityFilter: 'SHOW_ALL'
-}
-
-let visibilityReducer = (state = defaultState, action) => {
+let visibilityFilter = (state = defaultState, action) => {
     switch(action.type){
+        case 'SET_VISIBILITY_FILTER':
+            return action.filter
         default:
             return state
     }
 }
+
+/*
+    Agora temos dois redutores, o 'todos' (antigo 'todoApp'), e o 'visibilityReducer',
+    qual será a cara do estado (UNICO) da nossa aplicação?
+*/
+
+const defaultAppState = {
+    todos: [],
+    visibilityFilter: 'SHOW_ALL'
+}
+
+/*
+    Como podemos projetar um redutor, que receba as ações JÁ DEFINIDAS e
+    atue corretamente ?
+*/
