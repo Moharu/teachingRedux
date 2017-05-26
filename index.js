@@ -1,7 +1,7 @@
 /* 
     Bem vindo ao curso de redux do primo do michel teló!
 
-    Primeiramente, é importante entendermos que os três conceitos principais do redux:
+    Primeiramente, é importante entendermos que os conceitos principais do redux:
     
     -----------------
     PRIMEIRO:
@@ -51,3 +51,17 @@ const todosApp = (state = [], action) => {
             return state
     }
 }
+
+/*
+    Os três princípios do redux:
+
+    "APENAS UMA FONTE DA VERDADE" - Todo o estado da aplicação está em uma "object tree",
+    que pode ser serializada e "hidratada" nos clients com esforço muito baixo.
+
+    "O ESTADO É READ-ONLY" - O único jeito dele ser alterado, é emitindo uma ação,
+    que é um OBJETO PLENO descrevendo o que está acontecendo
+
+    "MUDANÇAS SÃO FEITAS COM FUNÇÕES PURAS" - Para dizer como o estado vai ser transformado,
+    você escreve uma função PURA, que não vai alterar o estado anterior. Além disso os redutores
+    são COMPOSICIONAIS (mais adiante)
+*/
