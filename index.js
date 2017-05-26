@@ -1,39 +1,3 @@
-const addTodo = (text) => ({
-    type: 'ADD_TODO',
-    text
-})
-
-const toggleTodo = (index) => ({
-    type: 'TOGGLE_TODO',
-    index
-})
-
-const initialState = []
-
-const todoApp = (state = initialState, action = {}) => {
-    switch(action.type){
-        case 'ADD_TODO':
-            return [...state, { text: action.text, completed: false}]
-        case 'TOGGLE_TODO':
-            return state.map((todo, index) => index == action.index ? {...todo, completed: !todo.completed} : todo)
-        default:
-            return state
-    }
-}
-
-/*
-    Até aqui, entendemos praticamente todos FUNDAMENTOS do REDUX,
-    sem nem mesmo encostar na biblioteca em si.
-    
-    O que ela vai fazer, essencialmente, é o trabalho que tínhamos designado
-    a variável 'state' no exemplo anterior, ou seja, segurar o estado da aplicação.
-    Para isso, vamos criar uma 'STORE', que tem as seguintes responsabilidades:
-        * Segurar o estado da aplicação
-        * Permitir a leitura desse estado
-        * Permitir que ele seja atualizado através de ações
-        * Permitir listeners para alterações no estado
-*/
-
 import { createStore } from 'redux'
 
 /*
