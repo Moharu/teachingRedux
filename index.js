@@ -1,33 +1,30 @@
+/*
+    Primeiramente, movemos o código relacionado ao todoApp para um arquivo diferente
+*/
+
+import todoApp, { addTodo, toggleTodo } from './todoApp'
 import { createStore } from 'redux'
 
 /*
-    Para criar a nossa store, basta passarmos para ela o redutor da nossa
-    aplicação, e (opcionalmente), o estado inicial
+    Agora, vamos falar sobre composição de redutores.
+    Conforme a aplicação vai ficando mais complexa, o redutor
+    da aplicação vai crescendo cada vez mais, mas é possível
+    separar ele em diversos redutores menores, com funçoes específicas.
+
+    Digamos que agora queremos um filtro de visibilidade para nossa lista
+    de TODOS
+
+    ele vai ter as opcoes: SHOW_ALL, SHOW_COMPLETED, HIDE_COMPLETED
+    a única ação será: SET_VISIBILITY_FILTER, que terá como parametro o novo filtro
 */
 
-const stateReceivedFromBackendServer = [{
-    text: 'plantar uma árvore',
-    completed: false
-}, {
-    text: 'doar sangue',
-    completed: true
-}]
+let defaultState = {
+    visibilityFilter: 'SHOW_ALL'
+}
 
-let store = createStore(todoApp, stateReceivedFromBackendServer)
-
-// Se quisermos verificar o estado da aplicação:
-console.log(store.getState())
-// Se quisermos reagir a alterações do estado (o retorno é a função para UNSUBSCRIBE)
-let unsubscribe = store.subscribe(() => {
-    console.log(store.getState())
-})
-// Se quisermos despachar uma ação:
-store.dispatch(toggleTodo(0))
-// Parar de reagir a updates no estado
-unsubscribe()
-
-
-/*
-    Repare que, neste ponto, temos toda a lógica da aplicação
-    sem ter encostado em uma linha de UI.
-*/
+let visibilityReducer = (state = defaultState, action) => {
+    switch(action.type){
+        default:
+            return state
+    }
+}

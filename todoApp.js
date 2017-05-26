@@ -1,9 +1,9 @@
-const addTodo = (text) => ({
+export const addTodo = (text) => ({
     type: 'ADD_TODO',
     text
 })
 
-const toggleTodo = (index) => ({
+export const toggleTodo = (index) => ({
     type: 'TOGGLE_TODO',
     index
 })
@@ -20,3 +20,5 @@ const todoApp = (state = initialState, action = {}) => {
             return state
     }
 }
+
+export default todoApp
