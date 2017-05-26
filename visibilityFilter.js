@@ -5,7 +5,7 @@ export const setVisibilityFilter = (filter) => ({
 
 let defaultState = 'SHOW_ALL'
 
-const visibilityFilter = (state = defaultState, action) => {
+const visibilityFilter = (state = defaultState, action = {}) => {
     switch(action.type){
         case 'SET_VISIBILITY_FILTER':
             return action.filter
