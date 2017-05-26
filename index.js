@@ -1,67 +1,28 @@
-/* 
-    Bem vindo ao curso de redux do primo do michel teló!
-
-    Primeiramente, é importante entendermos que os conceitos principais do redux:
-    
-    -----------------
-    PRIMEIRO:
-    Todo o estado da sua aplicação é descrito como um OBJETO JS (pleno)
-    -----------------
-
-    para nosso exemplo, vamos imaginar um TODO list (nada clichê)
-*/
-
-const applicationState = [{
-        text: "Clonar o projeto",
-        completed: true
-    }, {
-        text: "Servir café",
-        completed: true
-    }, {
-        text: "Aprender redux",
-        completed: false
-    }]
-
 /*
-    ----------------
-    SEGUNDO:
-    Para alterar qualquer coisa no nosso estado, precisamos criar uma ação
-    que descreva o que vai acontecer. Essa ação TAMBÉM é um OBJETO JS (pleno)
-    ----------------
-*/
+    Vamos ver um pouco mais dos conceitos:
+    AÇOES:
 
-const action = {
-    type: 'ADD_TODO',
-    text: 'Trazer bolo'
-}
+    Como dito anteriormente, as ações são objetos plenos que vão descrever como
+    o estado será alterado. Elas sempre vão ter uma propriedade 'TYPE', que ensina
+    ao redutor como resolver uma ação daquele tipo. Todas as demais propriedades são
+    escolhidas à critério do programador.
 
-/*
-    ----------------
-    TERCEIRO:
-    Escrevemos uma FUNÇÃO REDUTORA que recebe o estado anterior da nossa aplicação e
-    a ação que foi enviada, retornando um NOVO ESTADO
-    ----------------
-*/
-
-const todosApp = (state = [], action) => {
-    switch(action.type){
-        case 'ADD_TODO':
-            return [...state, { text: action.text, completed: false }]
-        default:
-            return state
+    {
+        type: 'ADD_TODO',
+        text: 'Criar açoes legais'
     }
-}
+
+    Para que as ações tenham um formato padrão e sempre sejam entendidas pelo nosso redutor,
+    criamos funções chamadas de ACTION CREATORS.
+
+*/
+
+const addTodo = (text) => ({
+    type: 'ADD_TODO',
+    text
+})
 
 /*
-    Os três princípios do redux:
-
-    "APENAS UMA FONTE DA VERDADE" - Todo o estado da aplicação está em uma "object tree",
-    que pode ser serializada e "hidratada" nos clients com esforço muito baixo.
-
-    "O ESTADO É READ-ONLY" - O único jeito dele ser alterado, é emitindo uma ação,
-    que é um OBJETO PLENO descrevendo o que está acontecendo
-
-    "MUDANÇAS SÃO FEITAS COM FUNÇÕES PURAS" - Para dizer como o estado vai ser transformado,
-    você escreve uma função PURA, que não vai alterar o estado anterior. Além disso os redutores
-    são COMPOSICIONAIS (mais adiante)
+    Gostaria também de ter uma ação para marcar um TODO como
+    completo/incompleto, como seria o action creator dela?
 */
