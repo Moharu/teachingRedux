@@ -26,3 +26,5 @@ const addTodo = (text) => ({
     Gostaria também de ter uma ação para marcar um TODO como
     completo/incompleto, como seria o action creator dela?
 */
+
+const toggleTodo = () => {} // ??? (suponha que vamos receber o índice do todo)
