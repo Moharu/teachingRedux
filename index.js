@@ -52,10 +52,10 @@ const stateReceivedFromBackendServer = [{
 let store = createStore(todoApp, stateReceivedFromBackendServer)
 
 // Se quisermos verificar o estado da aplicação:
-console.log(store.getState())
+console.log('estado após criacao: ', store.getState())
 // Se quisermos reagir a alterações do estado (o retorno é a função para UNSUBSCRIBE)
 let unsubscribe = store.subscribe(() => {
-    console.log(store.getState())
+    console.log('estado atualizado: ', store.getState())
 })
 // Se quisermos despachar uma ação:
 store.dispatch(toggleTodo(0))
